@@ -2,26 +2,25 @@ import React, { Component } from 'react';
 import Statistics from '../Statistics';
 import FeedbackOptions from '../FeedbackOptions';
 import Notification from '../Notification';
+import PropTypes from 'prop-types';
 
-class Section extends Component {
+class Feedback extends Component {
   state = {
     good: 0,
     neutral: 0,
     bad: 0,
   };
 
-  options = ['Good', 'Neutral', 'Bad'];
-
   onLeaveFeedback = key => {
-    let optionKey = key.toLowerCase();
     this.setState(preState => {
-      const newState = preState[optionKey] + 1;
-      return { [optionKey]: newState };
+      const newState = preState[key] + 1;
+      return { [key]: newState };
     });
   };
 
   countTotalFeedback = () => {
-    return this.state.good + this.state.neutral + this.state.bad;
+    const { good, neutral, bad } = this.state;
+    return good + neutral + bad;
   };
 
   countPositiveFeedbackPercentage = () => {
@@ -41,7 +40,7 @@ class Section extends Component {
         <h2>{this.props.title}</h2>
 
         <FeedbackOptions
-          options={this.options}
+          options={['Good', 'Neutral', 'Bad']}
           onLeaveFeedback={this.onLeaveFeedback}
         />
 
@@ -61,4 +60,12 @@ class Section extends Component {
   }
 }
 
-export default Section;
+export default Feedback;
+
+Feedback.defaultProps = {
+  title: 'this is a feedback form',
+};
+
+Feedback.propTypes = {
+  title: PropTypes.string,
+};

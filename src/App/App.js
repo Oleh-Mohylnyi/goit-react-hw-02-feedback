@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Section from './components/Section';
+import Section from '../components/Feedback';
 
 class App extends Component {
   render() {
