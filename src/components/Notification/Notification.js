@@ -1,15 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-export default class Notification extends Component {
-  render() {
-    return <p>{this.props.message}</p>;
-  }
+export default function Notification({ message = 'No feedback' }) {
+  return <p>{message}</p>;
 }
-
-Notification.defaultProps = {
-  message: 'No feedback',
-};
 
 Notification.propTypes = {
   message: PropTypes.string,
